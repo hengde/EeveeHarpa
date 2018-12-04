@@ -21,11 +21,11 @@ public class BubbleGenerator : MonoBehaviour
   void Start()
   {
     spawnRegionsBag = new ShuffleBag<int>();
-    spawnRegionsBag.Add(0, 2);
-    spawnRegionsBag.Add(1, 3);
-    spawnRegionsBag.Add(2, 2);
-    spawnRegionsBag.Add(3, 3);
-    spawnRegionsBag.Add(4, 2);
+    spawnRegionsBag.Add(0, 1);
+    spawnRegionsBag.Add(1, 1);
+    spawnRegionsBag.Add(2, 1);
+    spawnRegionsBag.Add(3, 1);
+    spawnRegionsBag.Add(4, 1);
   }
 
   // Update is called once per frame
