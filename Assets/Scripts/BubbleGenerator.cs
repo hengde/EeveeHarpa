@@ -12,10 +12,14 @@ public class BubbleGenerator : MonoBehaviour
   float lastSpawnTime;
   float timeUntilNextSpawn;
   ShuffleBag<int> spawnRegionsBag; // to control amount of spawns in each region
+  ShuffleBag<int> bubbleTypesBag; // to control the spawn rates of different bubble types
 
   public Vector2[] spawnRegions; // x is left edge, y is right edge
 
   public List<GameObject> spawnedBubbles;
+
+  public Sprite bigBubbleSprite;
+  public Sprite medBubbleSprite;
 
   // Use this for initialization
   void Start()
@@ -26,6 +30,10 @@ public class BubbleGenerator : MonoBehaviour
     spawnRegionsBag.Add(2, 1);
     spawnRegionsBag.Add(3, 1);
     spawnRegionsBag.Add(4, 1);
+
+    bubbleTypesBag = new ShuffleBag<int>();
+    bubbleTypesBag.Add(0, 2);
+    bubbleTypesBag.Add(1, 4);
   }
 
   // Update is called once per frame
@@ -41,8 +49,25 @@ public class BubbleGenerator : MonoBehaviour
   void Spawn()
   {
     int myRegion = spawnRegionsBag.Next();
+    int myType = bubbleTypesBag.Next();
     float spawnXpos = Random.Range(spawnRegions[myRegion].x, spawnRegions[myRegion].y);
-    GameObject newBub = Instantiate(bubblePrefab, new Vector3(spawnXpos, transform.position.y, transform.position.z), Quaternion.identity);
+    GameObject newBub = Instantiate(
+      bubblePrefab,
+      new Vector3(
+        Mathf.Floor(spawnXpos) + .5f,
+        transform.position.y,
+        transform.position.z
+      ),
+      Quaternion.identity
+    );
+    if (myType == 1)
+    {
+      newBub.GetComponent<SpriteRenderer>().sprite = medBubbleSprite;
+      newBub.transform.ShiftX(-.5f);
+      newBub.transform.ShiftY(-.5f);
+      // small bubbles have a spawn rate between .4 and .6 times that of big bubbles
+      newBub.GetComponent<Bubble>().timeBetweenMoves *= Mathf.Floor(Random.Range(4f, 6f)) / 10;
+    }
     spawnedBubbles.Add(newBub);
     Debug.Log("Spawn at " + spawnXpos + "timeUntilNextSpawn");
     SetNewSpawnTime();
