@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20dd5565b159c49fc8b456673f39cf28, type: 3}
+  m_Name: Clips
+  m_EditorClassIdentifier: 
+  _audioBed: {fileID: 8300000, guid: 61dd1f52b5cc94a7e9857e9a31328419, type: 3}
+  _burbles: {fileID: 8300000, guid: cc5ab71babfbc43da80d35f89f521676, type: 3}
+  _bubblePops:
+  - {fileID: 8300000, guid: e3be7be39c5124932a6d53145491a3a5, type: 3}
+  - {fileID: 8300000, guid: 27a411ef77cd74cb7af9691083fdbd69, type: 3}
+  _bubbleClaimed:
+  - {fileID: 8300000, guid: 8f427e21107b74f69b5b886b10f03b46, type: 3}
+  - {fileID: 8300000, guid: 3e2c28d963b7146869c32550970ef284, type: 3}
+  - {fileID: 8300000, guid: f64f9f64acdbc43568fd5b369b1cddab, type: 3}
+  - {fileID: 8300000, guid: 251b3cedb290c4a178c2a9ec1e27f13b, type: 3}
+  _tick: {fileID: 8300000, guid: 74a4c451272cd45a2bda644994e0c4da, type: 3}
+  _click: {fileID: 8300000, guid: d35697b9714394e8d83b196305883d33, type: 3}
+  _donk: {fileID: 8300000, guid: bd5703ee996a14c3390298e3b9a0a85f, type: 3}

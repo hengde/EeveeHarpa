@@ -16,7 +16,10 @@ public class ClipLibrary : ScriptableObject {
 	[Header("Sound Effects")]
 	
 	[SerializeField] private AudioClip[] _bubblePops;
-	public AudioClip[] BubblePops { get { return _bubblePops; } }	
+	public AudioClip[] BubblePops { get { return _bubblePops; } }
+	
+	[SerializeField] private AudioClip[] _bubbleClaimed;
+	public AudioClip[] BubbleClaimed { get { return _bubbleClaimed; } }
 	
 	[Header("Placeholders")]
 	

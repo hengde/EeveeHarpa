@@ -34,6 +34,7 @@
           </e>
           <e p="Bubble.cs" t="Include" />
           <e p="BubbleGenerator.cs" t="Include" />
+          <e p="BubbleJuice.cs" t="Include" />
           <e p="ExtensionMethods.cs" t="Include" />
           <e p="Player.cs" t="Include" />
           <e p="PlayerController.cs" t="Include" />

@@ -15,6 +15,20 @@ public class PlayerController : GameInput
   Vector3 p1Pos;
   Vector3 p2Pos;
 
+
+  void Awake()
+  {
+    _InitializeServices();
+  }
+
+  private void _InitializeServices()
+  {
+    var newAudioGameObject = new GameObject("Audio Manager");
+    Services.Audio = newAudioGameObject.AddComponent<AudioManager>();
+    
+    Services.Clips = Resources.Load("Sounds/Clips") as ClipLibrary;
+  }
+  
   void Start()
   {
     p1Start = player1.transform.localPosition;

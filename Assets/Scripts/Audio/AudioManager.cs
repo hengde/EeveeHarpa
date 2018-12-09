@@ -10,10 +10,21 @@ public class AudioManager : MonoBehaviour {
     private int effectChannelSize = 100;
     private int effectChannelIndex = 0;
     private TaskManager _tm;
+    private AudioManager instance;
+    private AudioSource _burbling, _audioBed;
     
     private void Awake()
     {
-        // DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(gameObject);
+
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
         
         effectsHolder = new GameObject("Effect Tracks");
  
@@ -34,6 +45,22 @@ public class AudioManager : MonoBehaviour {
     private void Start()
     {
         _tm = new TaskManager();
+        
+        var burblingGO = new GameObject("Burbling Audio Bed");
+        burblingGO.transform.parent = transform;
+        _burbling = burblingGO.AddComponent<AudioSource>();
+        _burbling.clip = Services.Clips.Burbles;
+        _burbling.loop = true;
+        _burbling.volume = 0.45f;
+        _burbling.Play();
+        
+        var audioBedGO = new GameObject("Audio Bed");
+        audioBedGO.transform.parent = transform;
+        _audioBed = audioBedGO.AddComponent<AudioSource>();
+        _audioBed.clip = Services.Clips.AudioBed;
+        _audioBed.loop = true;
+        _burbling.volume = 0.25f;
+        //_audioBed.Play();
     }
     
     private void Update()
