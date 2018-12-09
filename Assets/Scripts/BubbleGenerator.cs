@@ -5,7 +5,7 @@ using UnityEngine;
 public class BubbleGenerator : MonoBehaviour
 {
 
-  public GameObject bubblePrefab;
+  GameObject bubblePrefab;
   public int maxBubbles;
   public float timeBetweenSpawnsBase;
   public float timeBetweenSpawnsVariance; // amount around base that time between spawns can vary
@@ -24,6 +24,7 @@ public class BubbleGenerator : MonoBehaviour
   // Use this for initialization
   void Start()
   {
+    bubblePrefab = Resources.Load("Prefabs/Bubble") as GameObject;
     spawnRegionsBag = new ShuffleBag<int>();
     spawnRegionsBag.Add(0, 1);
     spawnRegionsBag.Add(1, 1);
