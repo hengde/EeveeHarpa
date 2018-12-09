@@ -68,7 +68,7 @@ public class BubbleGenerator : MonoBehaviour
       // small bubbles have a spawn rate between .4 and .6 times that of big bubbles
       newBub.GetComponent<Bubble>().timeBetweenMoves *= Mathf.Floor(Random.Range(4f, 6f)) / 10;
     }
-    spawnedBubbles.Add(newBub);
+    // spawnedBubbles.Add(newBub);
     Debug.Log("Spawn at " + spawnXpos + "timeUntilNextSpawn");
     SetNewSpawnTime();
   }

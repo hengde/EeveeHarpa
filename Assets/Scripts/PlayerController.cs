@@ -26,15 +26,17 @@ public class PlayerController : GameInput
 
   void Update()
   {
+    Debug.Log(joy1.x + " " + joy1.y);
     Vector2 p1Move = Vector2.ClampMagnitude(joy1, 1);
+    Debug.Log(p1Move.y);
     p1Pos += (Vector3.right * p1Move.x + Vector3.up * p1Move.y) * moveSpeed * Time.deltaTime;
-    p1Pos = new Vector3(Mathf.Clamp(p1Pos.x, 2f, 35f), Mathf.Clamp(p1Pos.y, 2f, 10f), p1Pos.z);
+    p1Pos = new Vector3(Mathf.Clamp(p1Pos.x, 1f, 36f), Mathf.Clamp(p1Pos.y, 1f, 11f), p1Pos.z);
 
     player1.transform.localPosition = new Vector3(Mathf.Floor(p1Pos.x) + 0.5f, Mathf.Floor(p1Pos.y) + 0.5f, p1Pos.z);
 
     Vector2 p2Move = Vector2.ClampMagnitude(joy2, 1);
     p2Pos += (Vector3.right * p2Move.x + Vector3.up * p2Move.y) * moveSpeed * Time.deltaTime;
-    p2Pos = new Vector3(Mathf.Clamp(p2Pos.x, 2f, 36f), Mathf.Clamp(p2Pos.y, 2f, 10f), p2Pos.z);
+    p2Pos = new Vector3(Mathf.Clamp(p2Pos.x, 1f, 36f), Mathf.Clamp(p2Pos.y, 1f, 11f), p2Pos.z);
 
     player2.transform.localPosition = new Vector3(Mathf.Floor(p2Pos.x) + 0.5f, Mathf.Floor(p2Pos.y) + 0.5f, p2Pos.z);
   }
