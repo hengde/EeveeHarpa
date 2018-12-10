@@ -85,6 +85,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7af0fbafa75d4f8487200d73c61f9d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  juice: {fileID: 0}
   timeBetweenMoves: {x: 0.6, y: 0.5}
 --- !u!212 &212861605299143392
 SpriteRenderer:
@@ -122,7 +123,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 7ca84f72978e243b9a86e256234df53c, type: 3}
-  m_Color: {r: 0, g: 1, b: 0.99020815, a: 1}
+  m_Color: {r: 0, g: 0.46798563, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
