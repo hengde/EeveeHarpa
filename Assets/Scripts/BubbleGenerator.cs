@@ -70,7 +70,6 @@ public class BubbleGenerator : MonoBehaviour
       newBub.GetComponent<Bubble>().timeBetweenMoves *= Mathf.Floor(Random.Range(4f, 6f)) / 10;
     }
     // spawnedBubbles.Add(newBub);
-    Debug.Log("Spawn at " + spawnXpos + "timeUntilNextSpawn");
     SetNewSpawnTime();
   }
 
@@ -80,7 +79,6 @@ public class BubbleGenerator : MonoBehaviour
       -1 * timeBetweenSpawnsVariance / 2,
       timeBetweenSpawnsVariance / 2
     );
-    Debug.Log(timeUntilNextSpawn);
   }
 
 }

@@ -25,10 +25,10 @@ public class PlayerController : GameInput
   {
     var newAudioGameObject = new GameObject("Audio Manager");
     Services.Audio = newAudioGameObject.AddComponent<AudioManager>();
-    
+
     Services.Clips = Resources.Load("Sounds/Clips") as ClipLibrary;
   }
-  
+
   void Start()
   {
     p1Start = player1.transform.localPosition;
@@ -40,9 +40,7 @@ public class PlayerController : GameInput
 
   void Update()
   {
-    Debug.Log(joy1.x + " " + joy1.y);
     Vector2 p1Move = Vector2.ClampMagnitude(joy1, 1);
-    Debug.Log(p1Move.y);
     p1Pos += (Vector3.right * p1Move.x + Vector3.up * p1Move.y) * moveSpeed * Time.deltaTime;
     p1Pos = new Vector3(Mathf.Clamp(p1Pos.x, 1f, 36f), Mathf.Clamp(p1Pos.y, 1f, 11f), p1Pos.z);
 

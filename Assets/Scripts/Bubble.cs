@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Bubble : MonoBehaviour
 {
-  public GameObject juice;
+  GameObject juice;
+  GameObject rainbowJuice;
   Vector2 lastMove; // last x, y moves
   public Vector2 timeBetweenMoves = new Vector2(.6f, .5f); //default for big bubbles
   bool isClaimed = false; // has this bubble been claimed?
@@ -19,6 +20,7 @@ public class Bubble : MonoBehaviour
   void Start()
   {
     juice = Resources.Load("Prefabs/BubbleJuice") as GameObject;
+    rainbowJuice = Resources.Load("Prefabs/RainbowJuice") as GameObject;
     Debug.Log(juice);
     timeBetweenMoves.x = Random.Range(.8f, 1.5f);
   }
@@ -69,8 +71,8 @@ public class Bubble : MonoBehaviour
       Services.Audio.PlaySoundEffect(Services.Clips.BubbleClaimed[Random.Range(0, Services.Clips.BubbleClaimed.Length)]);
       isClaimed = true;
       ownerColor = newColor;
-      gameObject.GetComponent<SpriteRenderer>().color = ownerColor;
-      runJuice();
+      gameObject.GetComponent<SpriteRenderer>().color = ownerColor;//
+      // runJuice(false);
     }
   }
 
@@ -86,7 +88,8 @@ public class Bubble : MonoBehaviour
       }
       else
       {
-        getClaimed(other.gameObject.GetComponent<SpriteRenderer>().color);
+        Debug.Log(other.gameObject.GetComponent<BubblePlayer>().bubbleColor);
+        getClaimed(other.gameObject.GetComponent<BubblePlayer>().bubbleColor);
       }
     }
     if (!p2tagged && other.gameObject.name.Contains("Player2"))
@@ -98,7 +101,7 @@ public class Bubble : MonoBehaviour
       }
       else
       {
-        getClaimed(other.gameObject.GetComponent<SpriteRenderer>().color);
+        getClaimed(other.gameObject.GetComponent<BubblePlayer>().bubbleColor);
       }
     }
   }
@@ -108,12 +111,28 @@ public class Bubble : MonoBehaviour
     // do cool visual effects
     ownerColor = Color.white;
     gameObject.GetComponent<SpriteRenderer>().color = ownerColor;
-    runJuice();
+    runJuice(true);
   }
 
-  void runJuice()
+  void runJuice(bool combined = false)
   {
-    GameObject myJuice = Instantiate(juice, transform.position, Quaternion.identity);
-    myJuice.GetComponent<SpriteRenderer>().color = ownerColor;
+    GameObject myJuice;
+    if (combined)
+    {
+      Vector3 newPos = new Vector3(
+        Mathf.Floor(transform.position.x) + .5f,
+        Mathf.Floor(transform.position.x) + .5f,
+        transform.position.z
+      );
+      // Instantiate(Resources.Load("Prefabs/RainbowBubble"), newPos, Quaternion.identity);
+      myJuice = Instantiate(rainbowJuice, transform.position, Quaternion.identity);
+      Destroy(gameObject);
+    }
+    else
+    {
+      // myJuice = Instantiate(juice, transform.position, Quaternion.identity);
+      // myJuice.GetComponent<SpriteRenderer>().color = ownerColor;
+    }
+
   }
 }
