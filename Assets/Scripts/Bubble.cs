@@ -60,7 +60,7 @@ public class Bubble : MonoBehaviour
   {
     if (isClaimed)
     {
-      Services.Audio.PlaySoundEffect(Services.Clips.BubblePops[Random.Range(0, Services.Clips.BubblePops.Length)]);
+      Services.Audio.PlaySoundEffect(Services.Clips.BubblePops[Random.Range(0, Services.Clips.BubblePops.Length)], 0.5f);
       if (newColor != ownerColor)
       {
         Destroy(gameObject); // TODO replace with cool animation and sfx
@@ -68,7 +68,7 @@ public class Bubble : MonoBehaviour
     }
     else
     {
-      Services.Audio.PlaySoundEffect(Services.Clips.BubbleClaimed[Random.Range(0, Services.Clips.BubbleClaimed.Length)]);
+      Services.Audio.PlaySoundEffect(Services.Clips.BubbleClaimed[Random.Range(0, Services.Clips.BubbleClaimed.Length)], 0.5f);
       isClaimed = true;
       ownerColor = newColor;
       gameObject.GetComponent<SpriteRenderer>().color = ownerColor;//
@@ -108,6 +108,7 @@ public class Bubble : MonoBehaviour
 
   private void getCaptured()
   {
+    Services.Audio.PlaySoundEffect(Services.Clips.BubbleCaptured, 1.0f);
     // do cool visual effects
     ownerColor = Color.white;
     gameObject.GetComponent<SpriteRenderer>().color = ownerColor;
