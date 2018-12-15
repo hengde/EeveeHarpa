@@ -30,10 +30,10 @@ public class Bubble : MonoBehaviour
   {
     if (Time.time - timeBetweenMoves.y > lastMove.y)
     {
-      transform.SetY(transform.position.y + 1);
+      transform.SetY(transform.position.y - 1);
       lastMove.y = Time.time;
     }
-    if (transform.localPosition.y > 120)
+    if (transform.localPosition.y < -5)
     {
       Destroy(gameObject);
     }

@@ -6,6 +6,7 @@ public class BubbleGenerator : MonoBehaviour
 {
 
   GameObject bubblePrefab;
+  GameObject dropPrefab;
   public int maxBubbles;
   public float timeBetweenSpawnsBase;
   public float timeBetweenSpawnsVariance; // amount around base that time between spawns can vary
@@ -20,11 +21,12 @@ public class BubbleGenerator : MonoBehaviour
 
   public Sprite bigBubbleSprite;
   public Sprite medBubbleSprite;
-
+  public bool isDropSpawner;
   // Use this for initialization
   void Start()
   {
     bubblePrefab = Resources.Load("Prefabs/Bubble") as GameObject;
+    dropPrefab = Resources.Load("Prefabs/Waterdrop") as GameObject;
     spawnRegionsBag = new ShuffleBag<int>();
     spawnRegionsBag.Add(0, 1);
     spawnRegionsBag.Add(1, 1);
@@ -50,10 +52,11 @@ public class BubbleGenerator : MonoBehaviour
   void Spawn()
   {
     int myRegion = spawnRegionsBag.Next();
-    int myType = bubbleTypesBag.Next();
+    int myType = isDropSpawner ? 0 : bubbleTypesBag.Next();
     float spawnXpos = Random.Range(spawnRegions[myRegion].x, spawnRegions[myRegion].y);
+    GameObject thingToInstantiate = isDropSpawner ? dropPrefab : bubblePrefab;
     GameObject newBub = Instantiate(
-      bubblePrefab,
+      thingToInstantiate,
       new Vector3(
         Mathf.Floor(spawnXpos) + .5f,
         transform.position.y,
@@ -61,7 +64,7 @@ public class BubbleGenerator : MonoBehaviour
       ),
       Quaternion.identity
     );
-    if (myType == 1)
+    if (myType == 1 && !isDropSpawner)
     {
       newBub.GetComponent<SpriteRenderer>().sprite = medBubbleSprite;
       newBub.transform.ShiftX(-.5f);
