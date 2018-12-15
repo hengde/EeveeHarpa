@@ -11346,11 +11346,27 @@ MonoBehaviour:
   splitFacade: 1
   x: 4
   y: 6
+--- !u!1 &318838765 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1246796536619952, guid: dbd9d57f5c1374c1fb34cbb100e185ac,
+    type: 2}
+  m_PrefabInternal: {fileID: 1426565779}
 --- !u!4 &318838767 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4459970087042040, guid: dbd9d57f5c1374c1fb34cbb100e185ac,
     type: 2}
   m_PrefabInternal: {fileID: 1426565779}
+--- !u!114 &318838768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 318838765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c07be4d2cc4af4e37b6bb69023a2aad7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &329092999
 GameObject:
   m_ObjectHideFlags: 0
@@ -44673,6 +44689,49 @@ Prefab:
       propertyPath: timeBetweenSpawnsBase
       value: 1.2
       objectReference: {fileID: 0}
+    - target: {fileID: 114097844400529424, guid: dbd9d57f5c1374c1fb34cbb100e185ac,
+        type: 2}
+      propertyPath: p1Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114097844400529424, guid: dbd9d57f5c1374c1fb34cbb100e185ac,
+        type: 2}
+      propertyPath: p1Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114097844400529424, guid: dbd9d57f5c1374c1fb34cbb100e185ac,
+        type: 2}
+      propertyPath: p1Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114097844400529424, guid: dbd9d57f5c1374c1fb34cbb100e185ac,
+        type: 2}
+      propertyPath: p2Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114097844400529424, guid: dbd9d57f5c1374c1fb34cbb100e185ac,
+        type: 2}
+      propertyPath: p2Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1863878335530326, guid: dbd9d57f5c1374c1fb34cbb100e185ac, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1486602342520426, guid: dbd9d57f5c1374c1fb34cbb100e185ac, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114097844400529424, guid: dbd9d57f5c1374c1fb34cbb100e185ac,
+        type: 2}
+      propertyPath: p1Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114097844400529424, guid: dbd9d57f5c1374c1fb34cbb100e185ac,
+        type: 2}
+      propertyPath: p2Color.a
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dbd9d57f5c1374c1fb34cbb100e185ac, type: 2}
   m_IsPrefabAsset: 0
@@ -60925,6 +60984,8 @@ MonoBehaviour:
   bigBubbleSprite: {fileID: 21300000, guid: 7ca84f72978e243b9a86e256234df53c, type: 3}
   medBubbleSprite: {fileID: 21300000, guid: bfe52f6c58863435cb8ad00d0eb26410, type: 3}
   isDropSpawner: 1
+  p1Color: {r: 0, g: 0, b: 0, a: 0}
+  p2Color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &1903976918
 GameObject:
   m_ObjectHideFlags: 0

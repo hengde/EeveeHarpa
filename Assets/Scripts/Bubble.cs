@@ -8,21 +8,38 @@ public class Bubble : MonoBehaviour
   GameObject rainbowJuice;
   Vector2 lastMove; // last x, y moves
   public Vector2 timeBetweenMoves = new Vector2(.6f, .5f); //default for big bubbles
+  float baseTimeBetweenMovesY;
   bool isClaimed = false; // has this bubble been claimed?
 
-  bool p1tagged;
-  bool p2tagged;
+  public bool p1tagged;
+  public bool p2tagged;
 
   bool floatingRight; // control x movement left or right
   int xMovesbeforeSwitch; // number of moves in one x direction before flipping floatingRight
   int xMoveCounter = 2;
   Color ownerColor = new Color(0, 0, 0);
+  float difficultyRamp = .1f;
+
+  int difficultyIncreasesCount = 0;
+  void Awake()
+  {
+    EventManager.instance.AddListener<IncreaseDifficultyEvent>(increaseSpeed);
+  }
+
+  void OnDestroy()
+  {
+    EventManager.instance.RemoveListener<IncreaseDifficultyEvent>(increaseSpeed);
+  }
   void Start()
   {
+    baseTimeBetweenMovesY = timeBetweenMoves.y;
     juice = Resources.Load("Prefabs/BubbleJuice") as GameObject;
     rainbowJuice = Resources.Load("Prefabs/RainbowJuice") as GameObject;
-    Debug.Log(juice);
     timeBetweenMoves.x = Random.Range(.8f, 1.5f);
+    for (int i = 0; i < difficultyIncreasesCount; i++)
+    {
+      timeBetweenMoves.y *= difficultyRamp;
+    }
   }
 
   // Update is called once per frame
@@ -33,7 +50,7 @@ public class Bubble : MonoBehaviour
       transform.SetY(transform.position.y - 1);
       lastMove.y = Time.time;
     }
-    if (transform.localPosition.y < -5)
+    if (transform.localPosition.y < 90)
     {
       Destroy(gameObject);
     }
@@ -56,6 +73,11 @@ public class Bubble : MonoBehaviour
     }
   }
 
+  void increaseSpeed(IncreaseDifficultyEvent e)
+  {
+    difficultyIncreasesCount++;
+    //timeBetweenMoves.y *= difficultyRamp;
+  }
   void getClaimed(Color newColor)
   {
     if (isClaimed)
@@ -78,7 +100,7 @@ public class Bubble : MonoBehaviour
 
   private void OnTriggerEnter2D(Collider2D other)
   {
-    Debug.Log("hit " + other.name);
+    //    Debug.Log("hit " + other.name);
     if (!p1tagged && other.gameObject.name.Contains("Player1"))
     {
       p1tagged = true;
@@ -88,7 +110,7 @@ public class Bubble : MonoBehaviour
       }
       else
       {
-        Debug.Log(other.gameObject.GetComponent<BubblePlayer>().bubbleColor);
+        // Debug.Log(other.gameObject.GetComponent<BubblePlayer>().bubbleColor);
         getClaimed(other.gameObject.GetComponent<BubblePlayer>().bubbleColor);
       }
     }
@@ -108,6 +130,7 @@ public class Bubble : MonoBehaviour
 
   private void getCaptured()
   {
+    EventManager.instance.Raise(new CapturedBubbleEvent());
     Services.Audio.PlaySoundEffect(Services.Clips.BubbleCaptured, 1.0f);
     // do cool visual effects
     ownerColor = Color.white;

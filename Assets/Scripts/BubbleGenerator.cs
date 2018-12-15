@@ -23,6 +23,11 @@ public class BubbleGenerator : MonoBehaviour
   public Sprite medBubbleSprite;
   public bool isDropSpawner;
   // Use this for initialization
+  public Color p1Color;
+  public Color p2Color;
+
+  float lastAlreadyTaggedSpawnTime;
+  int alreadyTaggedSpawnCounter = 0;
   void Start()
   {
     bubblePrefab = Resources.Load("Prefabs/Bubble") as GameObject;
@@ -73,6 +78,31 @@ public class BubbleGenerator : MonoBehaviour
       newBub.GetComponent<Bubble>().timeBetweenMoves *= Mathf.Floor(Random.Range(4f, 6f)) / 10;
     }
     // spawnedBubbles.Add(newBub);
+    if ((myRegion != 2) && !isDropSpawner)
+    {
+      Debug.Log(alreadyTaggedSpawnCounter);
+      if (alreadyTaggedSpawnCounter >= 3)
+      {
+        int playerColor = Random.Range(0, 2);
+        newBub.GetComponent<SpriteRenderer>().color =
+          playerColor == 0
+            ? p1Color
+            : p2Color;
+        if (playerColor == 0)
+        {
+          newBub.GetComponent<Bubble>().p1tagged = true;
+        }
+        else
+        {
+          newBub.GetComponent<Bubble>().p2tagged = true;
+        }
+        alreadyTaggedSpawnCounter = 0;
+      }
+      else
+      {
+        alreadyTaggedSpawnCounter++;
+      }
+    }
     SetNewSpawnTime();
   }
 

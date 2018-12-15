@@ -15,7 +15,7 @@ public class BubbleJuice : MonoBehaviour
   // Update is called once per frame
   void Update()
   {
-    if (Time.time - spawnTime > 2f)
+    if (Time.time - spawnTime > 1.9f)
     {
       Destroy(gameObject);
     }
