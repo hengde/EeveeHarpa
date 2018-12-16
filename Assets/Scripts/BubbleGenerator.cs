@@ -6,6 +6,7 @@ public class BubbleGenerator : MonoBehaviour
 {
 
   GameObject bubblePrefab;
+  GameObject smallBubblePrefab;
   GameObject dropPrefab;
   public int maxBubbles;
   public float timeBetweenSpawnsBase;
@@ -31,6 +32,7 @@ public class BubbleGenerator : MonoBehaviour
   void Start()
   {
     bubblePrefab = Resources.Load("Prefabs/Bubble") as GameObject;
+    smallBubblePrefab = Resources.Load("Prefabs/SmallBubble") as GameObject;
     dropPrefab = Resources.Load("Prefabs/Waterdrop") as GameObject;
     spawnRegionsBag = new ShuffleBag<int>();
     spawnRegionsBag.Add(0, 1);
@@ -60,6 +62,10 @@ public class BubbleGenerator : MonoBehaviour
     int myType = isDropSpawner ? 0 : bubbleTypesBag.Next();
     float spawnXpos = Random.Range(spawnRegions[myRegion].x, spawnRegions[myRegion].y);
     GameObject thingToInstantiate = isDropSpawner ? dropPrefab : bubblePrefab;
+    if (myType == 1 && !isDropSpawner)
+    {
+      thingToInstantiate = smallBubblePrefab;
+    }
     GameObject newBub = Instantiate(
       thingToInstantiate,
       new Vector3(
@@ -71,11 +77,9 @@ public class BubbleGenerator : MonoBehaviour
     );
     if (myType == 1 && !isDropSpawner)
     {
-      newBub.GetComponent<SpriteRenderer>().sprite = medBubbleSprite;
       newBub.transform.ShiftX(-.5f);
       newBub.transform.ShiftY(-.5f);
-      // small bubbles have a spawn rate between .4 and .6 times that of big bubbles
-      newBub.GetComponent<Bubble>().timeBetweenMoves *= Mathf.Floor(Random.Range(4f, 6f)) / 10;
+      //newBub.GetComponent<Bubble>().timeBetweenMoves *= Mathf.Floor(Random.Range(8f, 9f)) / 10;
     }
     // spawnedBubbles.Add(newBub);
     if ((myRegion != 2) && !isDropSpawner)

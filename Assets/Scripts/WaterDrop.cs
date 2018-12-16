@@ -22,7 +22,7 @@ public class WaterDrop : MonoBehaviour
       transform.SetY(transform.position.y - 1);
       lastMove.y = Time.time;
     }
-    if (transform.localPosition.y < -5)
+    if (transform.localPosition.y < 90)
     {
       Destroy(gameObject);
     }

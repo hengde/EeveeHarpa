@@ -18,9 +18,9 @@ public class Bubble : MonoBehaviour
   int xMovesbeforeSwitch; // number of moves in one x direction before flipping floatingRight
   int xMoveCounter = 2;
   Color ownerColor = new Color(0, 0, 0);
-  float difficultyRamp = .1f;
+  float difficultyRamp = .9f;
 
-  int difficultyIncreasesCount = 0;
+  static int difficultyIncreasesCount = 0;
   void Awake()
   {
     EventManager.instance.AddListener<IncreaseDifficultyEvent>(increaseSpeed);
@@ -76,7 +76,10 @@ public class Bubble : MonoBehaviour
   void increaseSpeed(IncreaseDifficultyEvent e)
   {
     difficultyIncreasesCount++;
-    //timeBetweenMoves.y *= difficultyRamp;
+    for (int i = 0; i < difficultyIncreasesCount; i++)
+    {
+      timeBetweenMoves.y *= difficultyRamp;
+    }
   }
   void getClaimed(Color newColor)
   {
