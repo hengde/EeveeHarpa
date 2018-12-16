@@ -59,7 +59,7 @@ public class BubbleGenerator : MonoBehaviour
 
   void endGame(EndGameEvent e)
   {
-    Services.Audio.PlaySoundEffect(Services.Clips.GameWin);
+    Services.Audio.PlaySoundEffect(Services.Clips.GameWin, 0.7f);
 
     if (!isDropSpawner)
     {
@@ -83,6 +83,7 @@ public class BubbleGenerator : MonoBehaviour
     for (int i = 0; i < 7; i++)
     {
       addRainbow(juiceAreas.Next());
+      Services.Audio.PlaySoundEffect(Services.Clips.EndGamePop[Random.Range(0, Services.Clips.EndGamePop.Length)], 0.7f);
       yield return new WaitForSeconds(.33f);
     }
     yield return new WaitForSeconds(1f);
