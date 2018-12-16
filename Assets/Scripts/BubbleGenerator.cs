@@ -59,8 +59,8 @@ public class BubbleGenerator : MonoBehaviour
 
   void endGame(EndGameEvent e)
   {
-    Services.Audio.PlaySoundEffect(Services.Clips.GameWin, 0.3f);
-    
+    Services.Audio.PlaySoundEffect(Services.Clips.GameWin);
+
     if (!isDropSpawner)
     {
       Destroy(gameObject);
@@ -74,9 +74,65 @@ public class BubbleGenerator : MonoBehaviour
 
   IEnumerator resetGame()
   {
-    yield return new WaitForSeconds(10);
+    ShuffleBag<int> juiceAreas = new ShuffleBag<int>();
+    juiceAreas.Add(0, 1);
+    juiceAreas.Add(1, 1);
+    juiceAreas.Add(2, 1);
+    juiceAreas.Add(3, 1);
+    yield return new WaitForSeconds(2f);
+    for (int i = 0; i < 7; i++)
+    {
+      addRainbow(juiceAreas.Next());
+      yield return new WaitForSeconds(.33f);
+    }
+    yield return new WaitForSeconds(1f);
+    addRainbow(4);
+    yield return new WaitForSeconds(3f);
     SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     yield return null;
+  }
+
+  void addRainbow(int area)
+  {
+    float x = 5;
+    float y = 5;
+    switch (area)
+    {
+      case 0:
+        x = Random.Range(3.5f, 15f);
+        y = Random.Range(5f, 11f);
+        break;
+      case 1:
+        x = Random.Range(15f, 33f);
+        y = Random.Range(5f, 11f);
+        break;
+      case 2:
+        x = Random.Range(15f, 33f);
+        y = Random.Range(0f, 5f);
+        break;
+      case 3:
+        x = Random.Range(3.5f, 15f);
+        y = Random.Range(0f, 5f);
+        break;
+      case 4:
+        x = Random.Range(8f, 25f);
+        y = Random.Range(5f, 11f);
+        break;
+      default:
+        x = Random.Range(3.5f, 15f);
+        y = Random.Range(5f, 11f);
+        break;
+    }
+    y += 100;
+    Instantiate(
+      Resources.Load("Prefabs/RainbowJuice"),
+      new Vector3(
+        x,
+        y,
+        transform.position.z
+      ),
+      Quaternion.identity
+    );
   }
 
   void Start()

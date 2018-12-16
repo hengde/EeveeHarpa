@@ -14,7 +14,7 @@ public class ScoreManager : MonoBehaviour
   int difficultyLevel;
 
   float gameTimer;
-
+  bool alreadyEnded = false;
   void Awake()
   {
     bubblesCaptured = 0;
@@ -40,8 +40,9 @@ public class ScoreManager : MonoBehaviour
 
     }
 
-    if (gameTimer >= 150 || bubblesCaptured >= maxScore)
+    if ((gameTimer >= 150 || bubblesCaptured >= maxScore) && !alreadyEnded)
     {
+      alreadyEnded = true;
       EventManager.instance.Raise(new EndGameEvent());
     }
   }

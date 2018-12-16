@@ -44650,7 +44650,7 @@ Prefab:
     - target: {fileID: 114357819021148528, guid: dbd9d57f5c1374c1fb34cbb100e185ac,
         type: 2}
       propertyPath: maxScore
-      value: 2
+      value: 25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dbd9d57f5c1374c1fb34cbb100e185ac, type: 2}
