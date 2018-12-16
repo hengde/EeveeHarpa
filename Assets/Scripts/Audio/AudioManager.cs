@@ -78,7 +78,7 @@ public class AudioManager : MonoBehaviour {
         return to_return;
     }
 
-    public void PlaySoundEffect(AudioClip clip, float volume = 1.0f)
+    public void PlaySoundEffect(AudioClip clip, float volume = 1.0f, float pitch = 1.0f)
     {
         AudioSource to_play = effectChannels[effectChannelIndex];
         effectChannelIndex = (effectChannelIndex + 1) % effectChannelSize;
@@ -96,6 +96,7 @@ public class AudioManager : MonoBehaviour {
 
         to_play.volume = volume;
         to_play.clip = clip;
+        to_play.pitch = pitch;
         to_play.Play();
     }
 

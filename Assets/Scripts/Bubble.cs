@@ -135,7 +135,7 @@ public class Bubble : MonoBehaviour
   {
     EventManager.instance.Raise(new CapturedBubbleEvent());
     Services.Audio.PlaySoundEffect(Services.Clips.BubbleCaptured[Random.Range(0, Services.Clips.BubbleCaptured.Length)], 0.6f);
-    Services.Audio.PlaySoundEffect(Services.Clips.BubblePops[Random.Range(0, Services.Clips.BubblePops.Length)], 0.75f);
+    Services.Audio.PlaySoundEffect(Services.Clips.BubblePops[Random.Range(0, Services.Clips.BubblePops.Length)], 0.75f, Random.Range(-0.5f, 0.5f));
     // do cool visual effects
     ownerColor = Color.white;
     gameObject.GetComponent<SpriteRenderer>().color = ownerColor;
