@@ -7,7 +7,7 @@ public class Bubble : MonoBehaviour
   GameObject juice;
   GameObject rainbowJuice;
   Vector2 lastMove; // last x, y moves
-  public Vector2 timeBetweenMoves = new Vector2(.6f, .5f); //default for big bubbles
+  public Vector2 timeBetweenMoves = new Vector2(.8f, .7f); //default for big bubbles
   float baseTimeBetweenMovesY;
   bool isClaimed = false; // has this bubble been claimed?
 
@@ -18,7 +18,7 @@ public class Bubble : MonoBehaviour
   int xMovesbeforeSwitch; // number of moves in one x direction before flipping floatingRight
   int xMoveCounter = 2;
   Color ownerColor = new Color(0, 0, 0);
-  float difficultyRamp = .9f;
+  float difficultyRamp = .95f;
 
   static int difficultyIncreasesCount = 0;
   void Awake()

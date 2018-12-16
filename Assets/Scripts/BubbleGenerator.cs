@@ -29,6 +29,23 @@ public class BubbleGenerator : MonoBehaviour
 
   float lastAlreadyTaggedSpawnTime;
   int alreadyTaggedSpawnCounter = 0;
+
+
+  void Awake()
+  {
+    EventManager.instance.AddListener<IncreaseDifficultyEvent>(increaseSpeed);
+  }
+
+  void OnDestroy()
+  {
+    EventManager.instance.RemoveListener<IncreaseDifficultyEvent>(increaseSpeed);
+  }
+
+  void increaseSpeed(IncreaseDifficultyEvent e)
+  {
+    timeBetweenSpawnsBase -= .01f;
+    timeBetweenSpawnsVariance -= .01f;
+  }
   void Start()
   {
     bubblePrefab = Resources.Load("Prefabs/Bubble") as GameObject;
