@@ -29,7 +29,7 @@ public class BubbleGenerator : MonoBehaviour
 
   float lastAlreadyTaggedSpawnTime;
   int alreadyTaggedSpawnCounter = 0;
-
+  static int difficultyIncreases = 0;
 
   void Awake()
   {
@@ -43,10 +43,14 @@ public class BubbleGenerator : MonoBehaviour
 
   void increaseSpeed(IncreaseDifficultyEvent e)
   {
-    timeBetweenSpawnsBase -= .01f;
-    timeBetweenSpawnsVariance -= .01f;
+    difficultyIncreases++;
+    if ((isDropSpawner && difficultyIncreases <= 5) || !isDropSpawner)
+    {
+      timeBetweenSpawnsBase -= .1f;
+      timeBetweenSpawnsVariance -= .1f;
+    }
   }
-  
+
   void Start()
   {
     bubblePrefab = Resources.Load("Prefabs/Bubble") as GameObject;
