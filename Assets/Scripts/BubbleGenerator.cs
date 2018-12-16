@@ -59,6 +59,8 @@ public class BubbleGenerator : MonoBehaviour
 
   void endGame(EndGameEvent e)
   {
+    Services.Audio.PlaySoundEffect(Services.Clips.GameWin);
+    
     if (!isDropSpawner)
     {
       Destroy(gameObject);
