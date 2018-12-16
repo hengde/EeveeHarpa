@@ -18,6 +18,8 @@ public class PlayerController : GameInput
 
   void Awake()
   {
+    Application.targetFrameRate = 30;
+
     _InitializeServices();
   }
 
