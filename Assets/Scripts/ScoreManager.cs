@@ -6,47 +6,62 @@ using UnityEngine.UI;
 public class ScoreManager : MonoBehaviour
 {
 
-    public Image scoreBar;
+  public Image scoreBar;
 
-    public int maxScore = 20;
+  public int maxScore = 100;
 
-    int bubblesCaptured;
-    int difficultyLevel;
+  int bubblesCaptured;
+  int difficultyLevel;
 
-    void Awake()
+  float gameTimer;
+
+  void Awake()
+  {
+    bubblesCaptured = 0;
+    difficultyLevel = 0;
+    EventManager.instance.AddListener<CapturedBubbleEvent>(captureBubble);
+
+    if (scoreBar)
     {
-        bubblesCaptured = 0;
-        difficultyLevel = 0;
-        EventManager.instance.AddListener<CapturedBubbleEvent>( captureBubble );
+      scoreBar.fillAmount = 0f;
+    }
+  }
 
-        if( scoreBar )
-        {
-            scoreBar.fillAmount = 0f;
-        }
+  void OnDestroy()
+  {
+    EventManager.instance.RemoveListener<CapturedBubbleEvent>(captureBubble);
+  }
+
+  void Update()
+  {
+    if (bubblesCaptured > 0)
+    {
+      gameTimer += Time.deltaTime;
+
     }
 
-    void OnDestroy()
+    if (gameTimer >= 150 || bubblesCaptured >= maxScore)
     {
-        EventManager.instance.RemoveListener<CapturedBubbleEvent>( captureBubble );
+      EventManager.instance.Raise(new EndGameEvent());
+    }
+  }
+
+  void captureBubble(CapturedBubbleEvent e)
+  {
+    bubblesCaptured++;
+    if (bubblesCaptured % 5 == 0)
+    {
+      increasedifficultyLevel();
     }
 
-    void captureBubble( CapturedBubbleEvent e )
+    if (scoreBar != null)
     {
-        Debug.Log( "inc" );
-        bubblesCaptured++;
-        if( bubblesCaptured % 5 == 0 )
-        {
-            increasedifficultyLevel();
-        }
-
-        if( scoreBar != null )
-        {
-            scoreBar.fillAmount = Mathf.Clamp01( (float)bubblesCaptured / (float)maxScore );
-        }
+      scoreBar.fillAmount = Mathf.Clamp01((float)bubblesCaptured / (float)maxScore);
     }
+  }
 
-    void increasedifficultyLevel()
-    {
-        EventManager.instance.Raise( new IncreaseDifficultyEvent( difficultyLevel ) );
-    }
+  void increasedifficultyLevel()
+  {
+    EventManager.instance.Raise(new IncreaseDifficultyEvent(difficultyLevel));
+  }
 }

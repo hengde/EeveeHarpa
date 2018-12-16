@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class BubbleGenerator : MonoBehaviour
@@ -34,11 +35,13 @@ public class BubbleGenerator : MonoBehaviour
   void Awake()
   {
     EventManager.instance.AddListener<IncreaseDifficultyEvent>(increaseSpeed);
+    EventManager.instance.AddListener<EndGameEvent>(endGame);
   }
 
   void OnDestroy()
   {
     EventManager.instance.RemoveListener<IncreaseDifficultyEvent>(increaseSpeed);
+    EventManager.instance.RemoveListener<EndGameEvent>(endGame);
   }
 
   void increaseSpeed(IncreaseDifficultyEvent e)
@@ -46,9 +49,32 @@ public class BubbleGenerator : MonoBehaviour
     difficultyIncreases++;
     if ((isDropSpawner && difficultyIncreases <= 5) || !isDropSpawner)
     {
-      timeBetweenSpawnsBase -= .1f;
-      timeBetweenSpawnsVariance -= .1f;
+      if ((timeBetweenSpawnsBase > .3f && !isDropSpawner) || isDropSpawner)
+      {
+        timeBetweenSpawnsBase -= .1f;
+        timeBetweenSpawnsVariance -= .1f;
+      }
     }
+  }
+
+  void endGame(EndGameEvent e)
+  {
+    if (!isDropSpawner)
+    {
+      Destroy(gameObject);
+    }
+    else
+    {
+      timeBetweenSpawnsBase = .01f;
+      StartCoroutine(resetGame());
+    }
+  }
+
+  IEnumerator resetGame()
+  {
+    yield return new WaitForSeconds(10);
+    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    yield return null;
   }
 
   void Start()

@@ -21,6 +21,11 @@ public class IncreaseDifficultyEvent : GameEvent
   }
 }
 
+public class EndGameEvent : GameEvent
+{
+
+}
+
 public class EventManager
 {
   static EventManager instanceInternal = null;

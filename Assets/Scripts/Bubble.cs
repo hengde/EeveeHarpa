@@ -24,11 +24,18 @@ public class Bubble : MonoBehaviour
   void Awake()
   {
     EventManager.instance.AddListener<IncreaseDifficultyEvent>(increaseSpeed);
+    EventManager.instance.AddListener<EndGameEvent>(endGame);
   }
 
   void OnDestroy()
   {
     EventManager.instance.RemoveListener<IncreaseDifficultyEvent>(increaseSpeed);
+    EventManager.instance.RemoveListener<EndGameEvent>(endGame);
+  }
+
+  void endGame(EndGameEvent e)
+  {
+    timeBetweenMoves.y = .2f;
   }
 
   void Start()
@@ -82,7 +89,7 @@ public class Bubble : MonoBehaviour
       timeBetweenMoves.y *= difficultyRamp;
     }
   }
-  
+
   void getClaimed(Color newColor)
   {
     if (isClaimed)
