@@ -35,12 +35,17 @@
           <e p="Bubble.cs" t="Include" />
           <e p="BubbleGenerator.cs" t="Include" />
           <e p="BubbleJuice.cs" t="Include" />
+          <e p="BubblePlayer.cs" t="Include" />
+          <e p="EventManager.cs" t="Include" />
           <e p="ExtensionMethods.cs" t="Include" />
           <e p="Player.cs" t="Include" />
           <e p="PlayerController.cs" t="Include" />
+          <e p="RotatingBubble.cs" t="Include" />
+          <e p="ScoreManager.cs" t="Include" />
           <e p="ShuffleBag.cs" t="Include" />
           <e p="SpiralCircle.cs" t="Include" />
           <e p="SpiralCircleManager.cs" t="Include" />
+          <e p="WaterDrop.cs" t="Include" />
         </e>
       </e>
       <e p="EeveeHarpa.sln" t="IncludeFlat" />

@@ -21,8 +21,8 @@ public class ClipLibrary : ScriptableObject {
 	[SerializeField] private AudioClip[] _bubbleClaimed;
 	public AudioClip[] BubbleClaimed { get { return _bubbleClaimed; } }
 
-	[SerializeField] private AudioClip _bubbleCaptured;
-	public AudioClip BubbleCaptured { get { return _bubbleCaptured; }}
+	[SerializeField] private AudioClip[] _bubbleCaptured;
+	public AudioClip[] BubbleCaptured { get { return _bubbleCaptured; }}
 	
 	[Header("Placeholders")]
 	
