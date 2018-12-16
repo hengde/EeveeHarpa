@@ -32,10 +32,10 @@ public class ScoreManager : MonoBehaviour
   }
   void captureBubble(CapturedBubbleEvent e)
   {
-    Debug.Log("inc");
     bubblesCaptured++;
     if (bubblesCaptured % 5 == 0)
     {
+      Debug.Log("inc");
       increasedifficultyLevel();
     }
   }
