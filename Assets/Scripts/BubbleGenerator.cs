@@ -46,6 +46,7 @@ public class BubbleGenerator : MonoBehaviour
     timeBetweenSpawnsBase -= .01f;
     timeBetweenSpawnsVariance -= .01f;
   }
+  
   void Start()
   {
     bubblePrefab = Resources.Load("Prefabs/Bubble") as GameObject;

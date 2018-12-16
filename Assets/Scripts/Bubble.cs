@@ -30,6 +30,7 @@ public class Bubble : MonoBehaviour
   {
     EventManager.instance.RemoveListener<IncreaseDifficultyEvent>(increaseSpeed);
   }
+
   void Start()
   {
     baseTimeBetweenMovesY = timeBetweenMoves.y;
@@ -81,6 +82,7 @@ public class Bubble : MonoBehaviour
       timeBetweenMoves.y *= difficultyRamp;
     }
   }
+  
   void getClaimed(Color newColor)
   {
     if (isClaimed)
@@ -135,7 +137,7 @@ public class Bubble : MonoBehaviour
   {
     EventManager.instance.Raise(new CapturedBubbleEvent());
     Services.Audio.PlaySoundEffect(Services.Clips.BubbleCaptured[Random.Range(0, Services.Clips.BubbleCaptured.Length)], 0.6f);
-    Services.Audio.PlaySoundEffect(Services.Clips.BubblePops[Random.Range(0, Services.Clips.BubblePops.Length)], 0.75f, Random.Range(-0.5f, 0.5f));
+    Services.Audio.PlaySoundEffect(Services.Clips.BubblePops[Random.Range(0, Services.Clips.BubblePops.Length)], 0.75f, Random.Range(0.8f, 1.2f));
     // do cool visual effects
     ownerColor = Color.white;
     gameObject.GetComponent<SpriteRenderer>().color = ownerColor;
