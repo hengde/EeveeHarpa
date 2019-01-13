@@ -28,6 +28,9 @@ public class BubbleGenerator : MonoBehaviour
   public Color p1Color;
   public Color p2Color;
 
+  public Transform player1;
+  public Transform player2;
+
   float lastAlreadyTaggedSpawnTime;
   int alreadyTaggedSpawnCounter = 0;
   static int difficultyIncreases = 0;
@@ -68,11 +71,16 @@ public class BubbleGenerator : MonoBehaviour
     else
     {
       timeBetweenSpawnsBase = .01f;
-      StartCoroutine(resetGame());
+      Debug.Log(e.gameLength+ " "+getNumEndJuiceBubbles(e.gameLength));
+      StartCoroutine(resetGame(getNumEndJuiceBubbles(e.gameLength)));
     }
   }
 
-  IEnumerator resetGame()
+  int getNumEndJuiceBubbles (float gameLength) {
+    return Mathf.RoundToInt( Mathf.Lerp( 0f, 7f, Mathf.InverseLerp( 150f, 30f, gameLength ) ) );
+  }
+
+  IEnumerator resetGame(float numEndJuiceBubbles)
   {
     ShuffleBag<int> juiceAreas = new ShuffleBag<int>();
     juiceAreas.Add(0, 1);
@@ -80,7 +88,7 @@ public class BubbleGenerator : MonoBehaviour
     juiceAreas.Add(2, 1);
     juiceAreas.Add(3, 1);
     yield return new WaitForSeconds(2f);
-    for (int i = 0; i < 7; i++)
+    for (int i = 0; i < numEndJuiceBubbles; i++)
     {
       addRainbow(juiceAreas.Next());
       Services.Audio.PlaySoundEffect(Services.Clips.EndGamePop[Random.Range(0, Services.Clips.EndGamePop.Length)], 0.7f);
@@ -88,6 +96,7 @@ public class BubbleGenerator : MonoBehaviour
     }
     yield return new WaitForSeconds(1f);
     addRainbow(4);
+    Services.Audio.PlaySoundEffect(Services.Clips.EndGamePop[Random.Range(0, Services.Clips.EndGamePop.Length)], 0.7f);
     yield return new WaitForSeconds(3f);
     SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     yield return null;
@@ -182,12 +191,31 @@ public class BubbleGenerator : MonoBehaviour
       ),
       Quaternion.identity
     );
-    if (myType == 1 && !isDropSpawner)
+
+    if( !isDropSpawner)
     {
-      newBub.transform.ShiftX(-.5f);
-      newBub.transform.ShiftY(-.5f);
-      //newBub.GetComponent<Bubble>().timeBetweenMoves *= Mathf.Floor(Random.Range(8f, 9f)) / 10;
+      Bubble bubble = newBub.GetComponent<Bubble>();
+
+      if(bubble)
+      {
+        bubble.player1 = player1;
+        bubble.player2 = player2;
+      }
+
+      if (myType == 1)
+      {
+        newBub.transform.ShiftX(-.5f);
+        newBub.transform.ShiftY(-.5f);
+        //newBub.GetComponent<Bubble>().timeBetweenMoves *= Mathf.Floor(Random.Range(8f, 9f)) / 10;
+      }
     }
+
+    // if (myType == 1 && !isDropSpawner)
+    // {
+    //   newBub.transform.ShiftX(-.5f);
+    //   newBub.transform.ShiftY(-.5f);
+    //   //newBub.GetComponent<Bubble>().timeBetweenMoves *= Mathf.Floor(Random.Range(8f, 9f)) / 10;
+    // }
     // spawnedBubbles.Add(newBub);
     // if ((myRegion != 2) && !isDropSpawner)
     // {

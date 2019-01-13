@@ -15,7 +15,7 @@ public class AudioManager : MonoBehaviour {
     
     private void Awake()
     {
-        DontDestroyOnLoad(gameObject);
+        // DontDestroyOnLoad(gameObject);
 
         if (instance == null)
         {
@@ -23,7 +23,7 @@ public class AudioManager : MonoBehaviour {
         }
         else
         {
-            Destroy(this);
+            Destroy(gameObject);
         }
         
         effectsHolder = new GameObject("Effect Tracks");

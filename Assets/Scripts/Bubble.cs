@@ -14,6 +14,11 @@ public class Bubble : MonoBehaviour
   public bool p1tagged;
   public bool p2tagged;
 
+  public float radius;
+
+  public Transform player1;
+  public Transform player2;
+
   bool floatingRight; // control x movement left or right
   int xMovesbeforeSwitch; // number of moves in one x direction before flipping floatingRight
   int xMoveCounter = 2;
@@ -36,6 +41,7 @@ public class Bubble : MonoBehaviour
   void endGame(EndGameEvent e)
   {
     timeBetweenMoves.y = .2f;
+    difficultyIncreasesCount = 0;
   }
 
   void Start()
@@ -79,6 +85,45 @@ public class Bubble : MonoBehaviour
         floatingRight = !floatingRight;
       }
     }
+
+    Vector2 flatPosition = new Vector2( transform.position.x, transform.position.y );
+    float distance;
+    float collisionDistance = 1.25f + radius;
+    
+    if( player1 != null )
+    {
+      distance = Vector2.Distance( flatPosition, new Vector2( player1.position.x, player1.position.y ) );
+      if( distance < collisionDistance )
+      {
+        p1tagged = true;
+        if (p2tagged)
+        {
+          getCaptured();
+        }
+        else
+        {
+          // Debug.Log(other.gameObject.GetComponent<BubblePlayer>().bubbleColor);
+          getClaimed(player1.gameObject.GetComponent<BubblePlayer>().bubbleColor);
+        }
+      }
+    }
+
+    if( player2 != null )
+    {
+      distance = Vector2.Distance( flatPosition, new Vector2( player2.position.x, player2.position.y ) );
+      if( distance < collisionDistance )
+      {
+        p2tagged = true;
+        if (p1tagged)
+        {
+          getCaptured();
+        }
+        else
+        {
+          getClaimed(player2.gameObject.GetComponent<BubblePlayer>().bubbleColor);
+        }
+      }
+    }
   }
 
   void increaseSpeed(IncreaseDifficultyEvent e)
@@ -112,7 +157,7 @@ public class Bubble : MonoBehaviour
 
   private void OnTriggerEnter2D(Collider2D other)
   {
-    //    Debug.Log("hit " + other.name);
+      //  Debug.Log("hit " + other.name + " when I'm at " + transform.position + " and other is at " + other.transform.position );
     if (!p1tagged && other.gameObject.name.Contains("Player1"))
     {
       p1tagged = true;

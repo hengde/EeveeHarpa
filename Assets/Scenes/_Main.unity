@@ -44652,7 +44652,27 @@ Prefab:
       propertyPath: maxScore
       value: 25
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 4527285252076126, guid: dbd9d57f5c1374c1fb34cbb100e185ac, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4151911139907224, guid: dbd9d57f5c1374c1fb34cbb100e185ac, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114097844400529424, guid: dbd9d57f5c1374c1fb34cbb100e185ac,
+        type: 2}
+      propertyPath: player1
+      value: 
+      objectReference: {fileID: 1681582017}
+    - target: {fileID: 114097844400529424, guid: dbd9d57f5c1374c1fb34cbb100e185ac,
+        type: 2}
+      propertyPath: player2
+      value: 
+      objectReference: {fileID: 1806634342}
+    m_RemovedComponents:
+    - {fileID: 60816326456534274, guid: dbd9d57f5c1374c1fb34cbb100e185ac, type: 2}
+    - {fileID: 60209138835411500, guid: dbd9d57f5c1374c1fb34cbb100e185ac, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: dbd9d57f5c1374c1fb34cbb100e185ac, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1 &1430962906
@@ -52752,6 +52772,31 @@ MonoBehaviour:
   splitFacade: 1
   x: 28
   y: 0
+--- !u!1 &1681582012 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1863878335530326, guid: dbd9d57f5c1374c1fb34cbb100e185ac,
+    type: 2}
+  m_PrefabInternal: {fileID: 1426565779}
+--- !u!58 &1681582013
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1681582012}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1.25
+--- !u!4 &1681582017 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4527285252076126, guid: dbd9d57f5c1374c1fb34cbb100e185ac,
+    type: 2}
+  m_PrefabInternal: {fileID: 1426565779}
 --- !u!1 &1683710927
 GameObject:
   m_ObjectHideFlags: 0
@@ -57506,6 +57551,31 @@ MonoBehaviour:
   splitFacade: 1
   x: 4
   y: 11
+--- !u!1 &1806634337 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1486602342520426, guid: dbd9d57f5c1374c1fb34cbb100e185ac,
+    type: 2}
+  m_PrefabInternal: {fileID: 1426565779}
+--- !u!58 &1806634338
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1806634337}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1.25
+--- !u!4 &1806634342 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4151911139907224, guid: dbd9d57f5c1374c1fb34cbb100e185ac,
+    type: 2}
+  m_PrefabInternal: {fileID: 1426565779}
 --- !u!1 &1813507491
 GameObject:
   m_ObjectHideFlags: 0

@@ -23,7 +23,10 @@ public class IncreaseDifficultyEvent : GameEvent
 
 public class EndGameEvent : GameEvent
 {
-
+  public float gameLength;
+  public EndGameEvent(float len) {
+    gameLength = len;
+  }
 }
 
 public class EventManager

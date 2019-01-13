@@ -43,7 +43,7 @@ public class ScoreManager : MonoBehaviour
     if ((gameTimer >= 150 || bubblesCaptured >= maxScore) && !alreadyEnded)
     {
       alreadyEnded = true;
-      EventManager.instance.Raise(new EndGameEvent());
+      EventManager.instance.Raise(new EndGameEvent(gameTimer));
     }
   }
 
