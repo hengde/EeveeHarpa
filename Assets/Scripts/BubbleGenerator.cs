@@ -71,7 +71,7 @@ public class BubbleGenerator : MonoBehaviour
     else
     {
       timeBetweenSpawnsBase = .01f;
-      Debug.Log(e.gameLength+ " "+getNumEndJuiceBubbles(e.gameLength));
+      //Debug.Log(e.gameLength+ " "+getNumEndJuiceBubbles(e.gameLength));
       StartCoroutine(resetGame(getNumEndJuiceBubbles(e.gameLength)));
     }
   }

@@ -34,6 +34,13 @@ namespace Harpa
 
         void Update()
         {
+            // Debug.Log( "num joysticks: " + Input.GetJoystickNames().Length );
+
+            // for( int i = 0; i < Input.GetJoystickNames().Length; i++ )
+            // {
+            //     Debug.Log( "joystick " + i + ": " + Input.GetJoystickNames()[ i ] );
+            // }
+
             if (Input.GetKeyDown(KeyCode.F1) && !gameOnly)
             {
                 inFP = !inFP;
@@ -80,6 +87,9 @@ namespace Harpa
                     gameInput.joy1.y += 1;
                 if (Input.GetKey(KeyCode.S))
                     gameInput.joy1.y -= 1;
+
+                gameInput.joy1.x = Mathf.Clamp( gameInput.joy1.x + Input.GetAxisRaw("Horizontal1A") + Input.GetAxisRaw("Horizontal1B"), -1f, 1f );
+                gameInput.joy1.y = Mathf.Clamp( gameInput.joy1.y + Input.GetAxisRaw("Vertical1A") + Input.GetAxisRaw("Vertical1B"), -1f, 1f );
                     
                 gameInput.joy2 = new Vector2();
                 if (Input.GetKey(KeyCode.L))
@@ -91,6 +101,9 @@ namespace Harpa
                 if (Input.GetKey(KeyCode.K))
                     gameInput.joy2.y -= 1;
 
+                gameInput.joy2.x = Mathf.Clamp( gameInput.joy2.x + Input.GetAxisRaw("Horizontal2A") + Input.GetAxisRaw("Horizontal2B"), -1f, 1f );
+                gameInput.joy2.y = Mathf.Clamp( gameInput.joy2.y + Input.GetAxisRaw("Vertical2A") + Input.GetAxisRaw("Vertical2B"), -1f, 1f );
+                    
                 gameInput.button1 = Input.GetKey(KeyCode.Q);
                 gameInput.button2 = Input.GetKey(KeyCode.E);
 

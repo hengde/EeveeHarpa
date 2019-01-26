@@ -151,7 +151,7 @@ public class Bubble : MonoBehaviour
       isClaimed = true;
       ownerColor = newColor;
       gameObject.GetComponent<SpriteRenderer>().color = ownerColor;//
-      // runJuice(false);
+      runJuice(false);
     }
   }
 
@@ -212,8 +212,9 @@ public class Bubble : MonoBehaviour
     }
     else
     {
-      // myJuice = Instantiate(juice, transform.position, Quaternion.identity);
-      // myJuice.GetComponent<SpriteRenderer>().color = ownerColor;
+      myJuice = Instantiate(juice, transform.position, Quaternion.identity);
+      myJuice.transform.rotation = Quaternion.AngleAxis( Random.value * 360f, Vector3.forward );
+      myJuice.GetComponent<SpriteRenderer>().color = ownerColor;
     }
 
   }
